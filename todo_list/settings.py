@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 import os
-# from dotenv import load_dotenv
+import django_heroku
+from pathlib import Path
 
-# load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -123,3 +122,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login'
+
+STATIC_DIRS = [
+    os.path.join(BASE_DIR, 'password_generator/static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Activate Django-Heroku.
+django_heroku.settings(locals())
